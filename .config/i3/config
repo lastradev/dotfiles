@@ -299,13 +299,13 @@ exec_always --no-startup-id picom
 # Start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-# Start xfce4-power-manager
-exec_always --no-startup-id xfce4-power-manager
+# Start dunst notifications
+exec_always --no-startup-id dunst
 
 # Makes android emulator a floating window
 for_window [title="^Android Emulator -"] floating enable
 
-# Hide borders when single window ()use smart borders when using i3_gaps)
+# Hide borders when single window (use smart borders when using i3_gaps)
 hide_edge_borders smart
 
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #5fafd7
