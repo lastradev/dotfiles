@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Vim Text Editor (Console)
+Comment=Edit text files in a console using Vim
+Exec=alacritty -e nvim %u --noplugin
+Terminal=false
+Type=Application
+Categories=Utility;TextEditor;
+StartupNotify=true
+MimeType=text/plain;
+NoDisplay=true
