@@ -76,6 +76,8 @@ Plug 'Neevash/awesome-flutter-snippets'
 Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 " Vim game
 Plug 'ThePrimeagen/vim-be-good'
+" enunch to do op like mkdir
+Plug 'tpope/vim-eunuch'
 call plug#end()
 
 let mapleader = " "
@@ -108,6 +110,7 @@ let g:coc_global_extensions = [
       \ 'coc-css', 
       \ 'coc-html', 
       \ 'coc-json', 
+      \ 'coc-python', 
       \ 'coc-prettier', 
       \ 'coc-tsserver', 
       \ 'coc-snippets', 
