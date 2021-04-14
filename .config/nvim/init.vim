@@ -1,6 +1,7 @@
 runtime ./plug-config/signify.vim
 runtime ./plug-config/nerdtree.vim
 
+set clipboard=unnamedplus
 set colorcolumn=80
 set signcolumn=yes
 set scrolloff=8
@@ -89,7 +90,7 @@ nnoremap <leader>fr :FlutterHotReload<cr>
 nnoremap <leader>fR :FlutterHotRestart<cr>
 nnoremap <leader>fs :FlutterSplit<cr>
 nnoremap <leader>fe :!flutter emulators --launch Pixel_3a_API_30_x86<cr>
-nnoremap <leader>fo :DartFmt<cr>
+nnoremap <leader>fo :Format<cr>
 nnoremap <leader>u :UndotreeShow<CR>
 
 "Autocompletion config
@@ -220,8 +221,6 @@ map <leader>l :wincmd l<CR>
 " " Split panel
 nnoremap <leader>v <C-w>v
 nnoremap <leader>s <C-w>s
-" " Map yanked to clipboard
-vnoremap <C-c> "*y
 " " Line moving
 " "  Normal mode
 nnoremap <C-j> :m .+1<CR>==
