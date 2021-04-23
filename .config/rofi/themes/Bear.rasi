@@ -1,5 +1,5 @@
 /**
- * Author: Primetoxinz
+ * Author: lastra-dev
  */
 * {
     text-color:                  #afaf87;
@@ -8,6 +8,8 @@
     red:                         #5fafd7;
     orange:                      #faa41a; 
     blue:                        #5fafd7;
+
+    font:                       "FiraCode Nerd Font Mono 12";
 
     selected-normal-foreground:  #262626;
     normal-foreground:           @foreground;

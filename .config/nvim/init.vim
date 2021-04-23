@@ -28,9 +28,10 @@ set shortmess+=c " for CoC plugin
 set noshowmode
 set cursorline
 
-colorscheme bear
+colorscheme gruvbox
 
-call plug#begin('~/.local/share/nvim/plugged')
+" call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('/nvim-conf/plugged')
 " Flutter
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -45,18 +46,17 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'jiangmiao/auto-pairs'
 " Nerd Tree
 Plug 'preservim/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'Xuyuanp/nerdtree-git-plugin' 
 Plug 'ryanoasis/vim-devicons'
 " Theme
-" Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 " Fuzzy Search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Status Line
 Plug 'itchyny/lightline.vim'
 " Code completion
-Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'
 " Undotree
 Plug 'mbbill/undotree'
@@ -72,8 +72,6 @@ Plug 'mhinz/vim-startify'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'Neevash/awesome-flutter-snippets'
-" Live server
-Plug 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 " Vim game
 Plug 'ThePrimeagen/vim-be-good'
 " enunch to do op like mkdir
@@ -110,6 +108,7 @@ let g:coc_global_extensions = [
       \ 'coc-css', 
       \ 'coc-html', 
       \ 'coc-json', 
+      \ 'coc-phpls', 
       \ 'coc-python', 
       \ 'coc-prettier', 
       \ 'coc-tsserver', 
@@ -175,14 +174,6 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" ALE (Asynchronous Lint Engine)
-let g:ale_fixers = {
- \ 'javascript': ['eslint']
- \ }
-let g:ale_sign_error = 'x'
-let g:ale_sign_warning = '!'
-let g:ale_fix_on_save = 1
-
 " Nerd Commenter
 " " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
@@ -209,7 +200,7 @@ let g:fzf_action = {
 
 " Lightline
 let g:lightline = {
-  \     'colorscheme': 'bear',
+  \     'colorscheme': 'gruvbox',
   \     'active': {
   \         'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
   \         'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding']]
@@ -235,6 +226,23 @@ inoremap <C-k> <ESC>:m .-2<CR>==gi
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 " Exit insert mode
-imap jj <Esc>
+inoremap <A-q> <Esc>
+vnoremap <A-q> <Esc>
+cnoremap <A-q> <Esc>
 " Map Y to y$
 nnoremap Y y$
+
+let g:ascii = [
+      \'                  o    ',
+      \'       _=,_     o      ',
+      \'    o_/6 /#\  o        ',
+      \'    \__ |##/          ',
+      \'     ="|--\           ',
+      \'       /   #"-.       ', 
+      \'       \#|_   _"-. /  ',
+      \'        |/ \_( # |"   ',
+      \'       C/ ,--___/     ',
+      \''
+      \]
+let g:startify_custom_header =
+      \ startify#pad(startify#fortune#boxed() + g:ascii )

@@ -1,4 +1,4 @@
-URxvt.font: xft:FiraCode\ Nerd\ Font:weight=130:size=10:antialias=true
+URxvt.font: xft:FiraCode\ Nerd\ Font:weight=130:size=11:antialias=true
 URxvt.scrollBar: false
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0

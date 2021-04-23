@@ -163,7 +163,7 @@ if &t_Co > 255
 
    hi Directory       ctermfg=144               cterm=none
    hi Error           ctermfg=219 ctermbg=89
-   hi ErrorMsg        ctermfg=199 ctermbg=16    cterm=none
+   hi ErrorMsg        ctermfg=235 ctermbg=167    cterm=none
    hi Exception       ctermfg=162               cterm=none
    hi FoldColumn      ctermfg=67  ctermbg=16
    hi Float           ctermfg=135
