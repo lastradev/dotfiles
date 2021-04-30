@@ -53,7 +53,7 @@ bindsym $mod+Return exec --no-startup-id st
 #bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-#bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+space exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -272,7 +272,7 @@ mode "$mode_system" {
 
 # Custom bindings
 # rofi
-bindsym $mod+space exec --no-startup-id rofi -show run
+# bindsym $mod+space exec --no-startup-id rofi -show run
 # explorer
 bindsym $mod+e exec --no-startup-id st -e lf
 # kill window
@@ -308,6 +308,7 @@ exec_always --no-startup-id dunst
 
 # Makes android emulator a floating window
 for_window [title="^Android Emulator -"] floating enable
+for_window [title="^galculator"] floating enable
 
 # Hide borders when single window (use smart borders when using i3_gaps)
 hide_edge_borders smart

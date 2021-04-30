@@ -18,8 +18,8 @@ RUN+="/bin/su $env{XUSER} -c 'notify-send -u normal Discharging: $attr{capacity}
 #IMPORT{program}="/usr/bin/xpub", \
 #RUN+="/bin/su $env{XUSER} -c 'notify-send -u low UnPlugged'"
 
-#SUBSYSTEM=="power_supply", ACTION=="change", \
-#ENV{POWER_SUPPLY_ONLINE}=="1", ENV{POWER}="on", \
-#OPTIONS+="last_rule", \
-#IMPORT{program}="/usr/bin/xpub", \
-#RUN+="/bin/su $env{XUSER} -c 'notify-send -u low PluggedIn'"
+SUBSYSTEM=="power_supply", ACTION=="change", \
+ENV{POWER_SUPPLY_ONLINE}=="1", ENV{POWER}="on", \
+OPTIONS+="last_rule", \
+IMPORT{program}="/usr/bin/xpub", \
+RUN+="/bin/su $env{XUSER} -c 'dunstctl close-all'"

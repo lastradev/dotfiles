@@ -30,12 +30,10 @@ set cursorline
 
 colorscheme gruvbox
 
-" call plug#begin('~/.local/share/nvim/plugged')
 call plug#begin('/nvim-conf/plugged')
 " Flutter
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'thosakwe/vim-flutter'
 " Git
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
@@ -69,13 +67,14 @@ Plug 'tpope/vim-surround'
 "Vim Startify
 Plug 'mhinz/vim-startify'
 " Vim snippets
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
-Plug 'Neevash/awesome-flutter-snippets'
+" Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'natebosch/dartlang-snippets'
+" Plug 'hrsh7th/vim-vsnip'
+" Plug 'hrsh7th/vim-vsnip-integ'
+" Plug 'Neevash/awesome-flutter-snippets'
 " Vim game
 Plug 'ThePrimeagen/vim-be-good'
-" enunch to do op like mkdir
-Plug 'tpope/vim-eunuch'
 call plug#end()
 
 let mapleader = " "
@@ -83,15 +82,30 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size=1
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 nnoremap <leader>e :NERDTreeToggle<cr>
-nnoremap <leader>fa :FlutterRun<cr>
-nnoremap <leader>fq :FlutterQuit<cr>
-nnoremap <leader>fr :FlutterHotReload<cr>
-nnoremap <leader>fR :FlutterHotRestart<cr>
-nnoremap <leader>fs :FlutterSplit<cr>
-nnoremap <leader>fe :!flutter emulators --launch Pixel_3a_API_30_x86<cr>
+nnoremap <leader>fs :CocCommand flutter.run<cr>
+nnoremap <leader>fq :CocCommand flutter.dev.quit<cr>
+nnoremap <leader>fr :CocCommand flutter.dev.hotReload<cr>
+nnoremap <leader>fR :CocCommand flutter.dev.hotRestart<cr>
+nnoremap <leader>fe :CocCommand flutter.emulators <CR>
+nnoremap <leader>fd :below new output:///flutter-dev <CR>
 nnoremap <leader>fo :Format<cr>
 nnoremap <leader>u :UndotreeShow<CR>
+
+" Useful for closing parenthesis
+inoremap <C-l> <Right>
 
 "Autocompletion config
 " COC
@@ -113,18 +127,9 @@ let g:coc_global_extensions = [
       \ 'coc-prettier', 
       \ 'coc-tsserver', 
       \ 'coc-snippets', 
+      \ 'coc-flutter', 
+      \ 'coc-yaml', 
       \ 'coc-eslint']
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ getline('.')[col('.')-1] =~? '[]>)}''"`]' ? "\<Right>" :
-      \ "\<TAB>" 
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 
 " " Always show the signcolumn, otherwise it would shift the text each time
 " " diagnostics appear/become resolved.
@@ -204,7 +209,7 @@ let g:lightline = {
   \     'active': {
   \         'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
   \         'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding']]
-  \     }
+  \     },
   \ }
 
 " " Panel switching
@@ -246,3 +251,4 @@ let g:ascii = [
       \]
 let g:startify_custom_header =
       \ startify#pad(startify#fortune#boxed() + g:ascii )
+
