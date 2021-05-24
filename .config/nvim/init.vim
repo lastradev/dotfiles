@@ -67,12 +67,8 @@ Plug 'tpope/vim-surround'
 "Vim Startify
 Plug 'mhinz/vim-startify'
 " Vim snippets
-" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'natebosch/dartlang-snippets'
-" Plug 'hrsh7th/vim-vsnip'
-" Plug 'hrsh7th/vim-vsnip-integ'
-" Plug 'Neevash/awesome-flutter-snippets'
 " Vim game
 Plug 'ThePrimeagen/vim-be-good'
 call plug#end()
@@ -109,10 +105,10 @@ inoremap <C-l> <Right>
 
 "Autocompletion config
 " COC
-nmap <leader>gd <Plug>(coc-definition)
-nmap <leader>gy <Plug>(coc-type-definition)
-nmap <leader>gi <Plug>(coc-implementation)
-nmap <leader>gr <Plug>(coc-references)
+nmap gd <Plug>(coc-definition)
+nmap gy <Plug>(coc-type-definition)
+nmap gi <Plug>(coc-implementation)
+nmap gr <Plug>(coc-references)
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -158,6 +154,11 @@ augroup mygroup
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+augroup DartAutoFmt
+      autocmd!
+      autocmd BufWritePre *.dart call CocAction('format') 
 augroup end
 
 " " Remap keys for applying codeAction to the current buffer.
@@ -230,10 +231,6 @@ inoremap <C-k> <ESC>:m .-2<CR>==gi
 " " Visual mode
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
-" Exit insert mode
-inoremap <A-q> <Esc>
-vnoremap <A-q> <Esc>
-cnoremap <A-q> <Esc>
 " Map Y to y$
 nnoremap Y y$
 
