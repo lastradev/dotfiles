@@ -198,8 +198,8 @@ mode "$mode_system" {
 }
 
 # Screen brightness controls
-# bindsym XF86MonBrightnessUp exec --no-startup-id "xbacklight -inc 10"
-# bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec 10"
+bindsym XF86MonBrightnessUp exec --no-startup-id /home/oscargl/.config/scripts/brightness-notification.sh up
+bindsym XF86MonBrightnessDown exec --no-startup-id /home/oscargl/.config/scripts/brightness-notification.sh down
 
 # Custom bindings
 # explorer
@@ -209,7 +209,7 @@ bindsym $mod+q kill
 # browser
 bindsym $mod+b exec brave
 # vim
-bindsym $mod+n exec --no-startup-id st -e nvim
+# bindsym $mod+n exec --no-startup-id st -e nvim
 # flameshot
 bindsym Print exec --no-startup-id flameshot full -c -p ~/Pictures/Screenshots
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui -p ~/Pictures/Screenshots
@@ -231,12 +231,13 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id dunst
 
 # Floating windows
-for_window [title="^Android Emulator -"] floating enable
+for_window [title="^Emulator"] floating enable move to workspace number $ws3
 for_window [title="^galculator"] floating enable
 
 # Workspaces
 for_window [class="^Brave-browser"] move to workspace number $ws1
-for_window [title="^nvim"] move to workspace number $ws2
+# for_window [title="^nvim"] move to workspace number $ws2
+for_window [title="^st"] move to workspace number $ws2
 
 # Hide borders when single window (use smart borders when using i3_gaps)
 hide_edge_borders smart
