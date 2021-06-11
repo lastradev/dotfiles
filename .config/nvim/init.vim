@@ -233,6 +233,16 @@ vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
 " Map Y to y$
 nnoremap Y y$
+" Documentation
+nnoremap <silent> gh :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 let g:ascii = [
       \'                  o    ',
@@ -248,4 +258,3 @@ let g:ascii = [
       \]
 let g:startify_custom_header =
       \ startify#pad(startify#fortune#boxed() + g:ascii )
-

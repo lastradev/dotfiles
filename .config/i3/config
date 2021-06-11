@@ -230,6 +230,8 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # Start dunst notifications
 exec_always --no-startup-id dunst
 
+exec --no-startup-id /home/oscargl/.local/bin/SPTN.sh
+
 # Floating windows
 for_window [title="^Emulator"] floating enable move to workspace number $ws3
 for_window [title="^galculator"] floating enable
