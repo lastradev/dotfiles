@@ -84,9 +84,9 @@ Plug 'lewis6991/gitsigns.nvim'
 " indent lines
 Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
 " Quick scope for finding words easier with f
-Plug 'unblevable/quick-scope'
+" Plug 'unblevable/quick-scope'
 " Code actions lightbulb 
-Plug 'kosayoda/nvim-lightbulb'
+" Plug 'kosayoda/nvim-lightbulb'
 call plug#end()
 
 let g:material_style = 'darker'
@@ -166,6 +166,8 @@ nnoremap <leader>fe :FlutterEmulators<CR>
 nnoremap <leader>fd :below new __FLUTTER_DEV_LOG__<CR>
 nnoremap <leader>fo :lua vim.lsp.buf.formatting()<cr>
 nnoremap <leader>u :UndotreeShow<CR>
+" Necessary for lsp to update diagnostics
+inoremap <C-c> <esc>
 
 "STARTIFY CUSTOM HEADER
 let g:ascii = [
@@ -256,11 +258,7 @@ nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
 nnoremap gR <cmd>TroubleToggle lsp_references<cr>
 
 lua << EOF
-require("flutter-tools").setup{
-  widget_guides = {
-     enabled = true,
-   },
-  } -- use defaults
+require("flutter-tools").setup() -- use defaults
 require('lualine').setup{
   options = {
     theme = 'material-nvim'
@@ -363,6 +361,3 @@ vim.lsp.protocol.CompletionItemKind = {
     "   (TypeParameter)"
 }
 EOF
-
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
