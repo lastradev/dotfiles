@@ -83,6 +83,10 @@ Plug 'folke/trouble.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 " indent lines
 Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
+" Tree sitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Whichkey
+Plug 'folke/which-key.nvim'
 call plug#end()
 
 runtime ./plug-config/nerdtree.vim
@@ -157,7 +161,7 @@ inoremap <C-l> <Right>
 " Flutter commands
 nnoremap <leader>fs :FlutterRun<cr>
 nnoremap <leader>fq :FlutterQuit<cr>
-nnoremap <leader>fr :FlutterReload>
+nnoremap <leader>fr :FlutterReload<cr>
 nnoremap <leader>fR :FlutterRestart<cr>
 nnoremap <leader>fe :FlutterEmulators<CR>
 " nnoremap <leader>fd :below new output:///flutter-dev <CR>
@@ -376,4 +380,28 @@ require'compe'.setup{
           spell = {kind = "   (Spell)"}
   }
 }
+
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  highlight = {
+    enable = false,              -- false will disable the whole extension
+    disable = { "c", "rust" },  -- list of language that will be disabled
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+  indent = {
+    enable = true
+  }
+}
+
+-- Whichkey
+require("which-key").setup {}
 EOF
