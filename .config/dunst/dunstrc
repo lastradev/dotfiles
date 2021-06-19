@@ -71,7 +71,7 @@
     # screen width minus the width defined in within the geometry option.
     geometry = "600x1-20+40"
 
-    notification_height = 100
+    notification_height = 40
     shrink = true
     # The transparency of the window. range: [0; 100]
     # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)

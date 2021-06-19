@@ -15,9 +15,9 @@ Xft.hinting:    true
 Xft.hintstyle:  hintfull
 
 ! special
- *.foreground:   #afaf87
- *.background:   #262626
- *.cursorColor:  #afaf87
+ *.foreground:   #dfdfdf
+ *.background:   #212121
+ *.cursorColor:  #dfdfdf
 !
 ! ! black
  *.color0:       #282a2e

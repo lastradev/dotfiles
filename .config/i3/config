@@ -238,8 +238,8 @@ for_window [title="^galculator"] floating enable
 
 # Workspaces
 for_window [class="^Brave-browser"] move to workspace number $ws1
-# for_window [title="^nvim"] move to workspace number $ws2
 for_window [title="^st"] move to workspace number $ws2
+for_window [class="^Spotify"] move to workspace number $ws8
 
 # Hide borders when single window (use smart borders when using i3_gaps)
 hide_edge_borders smart
