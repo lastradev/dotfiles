@@ -26,10 +26,13 @@ set cursorline
 
 
 call plug#begin('/nvim-conf/plugged')
+" Testing
+Plug 'vim-test/vim-test'
+Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
 " Flutter
 Plug 'dart-lang/dart-vim-plugin'
+Plug 'akinsho/flutter-tools.nvim'
 " Git
-" Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
@@ -38,17 +41,16 @@ Plug 'preservim/nerdtree'
 Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'Xuyuanp/nerdtree-git-plugin' 
 Plug 'ryanoasis/vim-devicons'
-" Flutter Custom settings
+" Autopairs
 Plug 'jiangmiao/auto-pairs'
 " Theme
 Plug 'morhetz/gruvbox'
 " Fuzzy Search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'ojroques/nvim-lspfuzzy'
 " Status Line
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
-" Plug 'hoob3rt/lualine.nvim'
-" Plug 'itchyny/lightline.vim'
 " Code completion
 Plug 'sheerun/vim-polyglot'
 " Undotree
@@ -70,9 +72,8 @@ Plug 'hrsh7th/nvim-compe'
 " LSP gui
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim'
-" Flutter tools
+" Lua support
 Plug 'nvim-lua/plenary.nvim'
-Plug 'akinsho/flutter-tools.nvim'
 " Vim game
 Plug 'ThePrimeagen/vim-be-good'
 " Material
@@ -83,11 +84,18 @@ Plug 'folke/trouble.nvim'
 " Git signs
 Plug 'lewis6991/gitsigns.nvim'
 " indent lines
-Plug 'lukas-reineke/indent-blankline.nvim', {'branch': 'lua'}
+Plug 'lukas-reineke/indent-blankline.nvim'
 " Tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Whichkey
 Plug 'folke/which-key.nvim'
+Plug '/nvim-conf/plugged/custom-flutter-snippets'
+" Cursor highlight
+Plug 'xiyaowong/nvim-cursorword'
+" Pubspec assist
+Plug 'akinsho/dependency-assist.nvim'
+" Smooth scroll
+Plug 'karb94/neoscroll.nvim'
 call plug#end()
 
 runtime ./plug-config/nerdtree.vim
@@ -171,6 +179,12 @@ nnoremap <leader>fo :lua vim.lsp.buf.formatting()<cr>
 nnoremap <leader>u :UndotreeShow<CR>
 " Necessary for lsp to update diagnostics
 inoremap <C-c> <esc>
+" Test remaps
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
 
 "STARTIFY CUSTOM HEADER
 let g:ascii = [
@@ -234,10 +248,13 @@ nnoremap gR <cmd>TroubleToggle lsp_references<cr>
 " Delete comments with /
 nnoremap <leader>dc :g/^\s*\//d<CR>
 
+lua require('lspfuzzy').setup {}
 lua << EOF
 
 require("flutter-tools").setup{}
-
+require'lspconfig'.tsserver.setup{}
+require'dependency_assist'.setup{}
+require('neoscroll').setup()
 
 require('gitsigns').setup{
   keymaps = {
@@ -281,15 +298,15 @@ require'compe'.setup {
         calc = {kind = "   (Calc)"},
         vsnip = {kind = "   (Snippet)"},
         nvim_lsp = {kind = "   (LSP)"},
-        -- nvim_lua = {kind = "  "},
 		    nvim_lua = false,
         spell = {kind = "   (Spell)"},
         tags = false,
         vim_dadbod_completion = true,
+        emoji = {kind = " ﲃ  (Emoji)", filetypes={"markdown", "text"}}
+        -- nvim_lua = {kind = "  "},
         -- snippets_nvim = {kind = "  "},
         -- ultisnips = {kind = "  "},
         -- treesitter = {kind = "  "},
-        emoji = {kind = " ﲃ  (Emoji)", filetypes={"markdown", "text"}}
         -- for emoji press : (idk if that in compe tho)
     }
 }
@@ -384,18 +401,6 @@ vim.lsp.protocol.CompletionItemKind = {
     "   (TypeParameter)",
 }
 
-require'compe'.setup{
-  source={
-          path = {kind = "   (Path)"},
-          buffer = {kind = "   (Buffer)"},
-          calc = {kind = "   (Calc)"},
-          vsnip = {kind = "   (Snippet)"},
-          nvim_lsp = {kind = "   (LSP)"},
-          -- nvim_lua = {kind = "  "},
-          nvim_lua = false,
-          spell = {kind = "   (Spell)"}
-  }
-}
 
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -647,3 +652,6 @@ table.insert(gls.short_line_left, {
 })
 
 EOF
+
+highlight CursorWord ctermbg=242 guibg=#363636
+highlight Visual guibg=#0866d9
