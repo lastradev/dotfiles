@@ -17,13 +17,13 @@
 ;==========================================================
 
 [colors]
-background = #212121
-background-alt = #212121
-foreground = #dfdfdf
-foreground-alt = #dfdfdf
-primary = #5fafd7
-secondary = #e60053
-alert = #bd2c40
+background = #282A36
+background-alt = #44475a
+foreground = #F8F8F2
+foreground-alt = #F8F8F2
+primary = #bd93f9
+secondary = #ff5555	
+alert = #ff5555
 
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}

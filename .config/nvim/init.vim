@@ -1,34 +1,8 @@
-set clipboard=unnamedplus
-set colorcolumn=80
-set signcolumn=yes
-set scrolloff=8
-set incsearch
-set nowrap
-set noerrorbells
-set hidden
-set nohlsearch
-set nu
-set relativenumber
-set guicursor=
-set tabstop=2 softtabstop=2
-set shiftwidth=2
-set expandtab
-set smartindent
-set nobackup
-set undofile
-set noswapfile
-syntax enable " enable syntax highglighting
-syntax on " turn on syntax highlighting
-set updatetime=750
-set shortmess+=c " removes pattern not found
-set noshowmode
-set cursorline
-
+runtime ./settings.vim
 
 call plug#begin('/nvim-conf/plugged')
-" Testing
-Plug 'vim-test/vim-test'
-Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
+" Theme
+Plug 'dracula/vim', { 'as': 'dracula' }
 " Flutter
 Plug 'dart-lang/dart-vim-plugin'
 Plug 'akinsho/flutter-tools.nvim'
@@ -36,15 +10,10 @@ Plug 'akinsho/flutter-tools.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
-" Nerd Tree
-Plug 'preservim/nerdtree'
-Plug 'vwxyutarooo/nerdtree-devicons-syntax'
-Plug 'Xuyuanp/nerdtree-git-plugin' 
-Plug 'ryanoasis/vim-devicons'
 " Autopairs
 Plug 'jiangmiao/auto-pairs'
 " Theme
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
 " Fuzzy Search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -62,7 +31,7 @@ Plug 'ap/vim-css-color'
 " Vim Surround
 Plug 'tpope/vim-surround'
 "Vim Startify
-Plug 'mhinz/vim-startify'
+Plug 'glepnir/dashboard-nvim'
 " Vim snippets
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
@@ -76,8 +45,6 @@ Plug 'glepnir/lspsaga.nvim'
 Plug 'nvim-lua/plenary.nvim'
 " Vim game
 Plug 'ThePrimeagen/vim-be-good'
-" Material
-Plug 'marko-cerovac/material.nvim'
 " Trouble
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
@@ -96,40 +63,28 @@ Plug 'xiyaowong/nvim-cursorword'
 Plug 'akinsho/dependency-assist.nvim'
 " Smooth scroll
 Plug 'karb94/neoscroll.nvim'
+" Testing
+Plug 'vim-test/vim-test'
+" nvim tree
+Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
 
-runtime ./plug-config/nerdtree.vim
-let g:material_style = 'darker'
+colorscheme dracula
+highlight CursorWord ctermbg=240 guibg=#363636
 
-colorscheme material
+" NVIM TREE
+runtime ./plug-config/nvimtree.vim
+" DASHBOARD
+runtime ./plug-config/dashboard.vim
+" NERD COMMENTER
+runtime ./plug-config/nerdcommenter.vim
+" INDENT BLANKLINE
+runtime ./plug-config/indent-blankline.vim
 
 let mapleader = " "
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-nnoremap <leader>e :NERDTreeToggle<cr>
+nnoremap <leader>e :NvimTreeToggle<cr>
 
-
-" " Always show the signcolumn, otherwise it would shift the text each time
-"
-" " diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
-
-
-" NERD COMMENTER
-" " Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-" " Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-" " Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-" " Enable NERDCommenterToggle to check all selected lines is commented or not
-let g:NERDToggleCheckAllLines = 1
-" " Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
 " " Map ++ to call NERD Commenter and use iTerm key bindings
 " " to bind Ctmd+/ to ++
 vmap ++ <plug>NERDCommenterToggle
@@ -137,6 +92,7 @@ nmap ++ <plug>NERDCommenterToggle
 
 "Fuzzy Search config
 nnoremap <leader>ps :Files<CR>
+nnoremap <leader>ag :Ag<CR>
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
@@ -185,22 +141,8 @@ nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-s> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
-
-"STARTIFY CUSTOM HEADER
-let g:ascii = [
-       \'                  o    ',
-       \'       _=,_     o      ',
-       \'    o_/6 /#\  o        ',
-       \'    \__ |##/          ',
-       \'     ="|--\           ',
-       \'       /   #"-.       ',
-       \'       \#|_   _"-. /  ',
-       \'        |/ \_( # |"   ',
-       \'       C/ ,--___/     ',
-       \''
-       \]
-let g:startify_custom_header =
-    \ startify#pad(startify#fortune#boxed() + g:ascii )
+" Dashboard load session
+nmap <Leader>ls :<C-u>SessionLoad<CR>
 
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
@@ -247,14 +189,23 @@ nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
 nnoremap gR <cmd>TroubleToggle lsp_references<cr>
 " Delete comments with /
 nnoremap <leader>dc :g/^\s*\//d<CR>
+" Exit insert mode in terminal
+if has('nvim')
+  tmap <C-o> <C-\><C-n>
+endif
+"
 
-lua require('lspfuzzy').setup {}
+" Testing
+let test#strategy = "neovim"
+let test#neovim#term_position = "below 12"
+
 lua << EOF
 
 require("flutter-tools").setup{}
 require'lspconfig'.tsserver.setup{}
 require'dependency_assist'.setup{}
 require('neoscroll').setup()
+require('lspfuzzy').setup {}
 
 require('gitsigns').setup{
   keymaps = {
@@ -350,6 +301,7 @@ _G.s_tab_complete = function()
   end
 end
 
+
 vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
@@ -426,29 +378,27 @@ require'nvim-treesitter.configs'.setup {
 -- Whichkey
 require("which-key").setup {}
 
-
-
 local gl = require('galaxyline')
 -- get my theme in galaxyline repo
 -- local colors = require('galaxyline.theme').default
 local colors = {
-    bg = '#333333',
-    yellow = '#DCDCAA',
-    dark_yellow = '#D7BA7D',
-    cyan = '#4EC9B0',
-    green = '#608B4E',
-    light_green = '#B5CEA8',
-    string_orange = '#CE9178',
-    orange = '#FF8800',
-    purple = '#C586C0',
-    magenta = '#D16D9E',
-    grey = '#858585',
-    blue = '#569CD6',
-    vivid_blue = '#4FC1FF',
-    light_blue = '#9CDCFE',
-    red = '#D16969',
-    error_red = '#F44747',
-    info_yellow = '#FFCC66'
+    bg = '#23252F',
+    yellow = '#f1fa8c',
+    dark_yellow = '#D5DB89',
+    cyan = '#8be9fd',
+    green = '#50fa7b',
+    light_green = '#50FA7B',
+    string_orange = '#ffb86c',
+    orange = '#ffb86c',
+    purple = '#bd93f9',
+    magenta = '#ff79c6',
+    grey = '#44475a',
+    blue = '#8be9fd',
+    vivid_blue = '#8be9fd',
+    light_blue = '#8be9fd',
+    red = '#ff5555',
+    error_red = '#ff5555',
+    info_yellow = '#f1fa8c'
 }
 local condition = require('galaxyline.condition')
 local gls = gl.section
@@ -652,6 +602,3 @@ table.insert(gls.short_line_left, {
 })
 
 EOF
-
-highlight CursorWord ctermbg=242 guibg=#363636
-highlight Visual guibg=#0866d9
