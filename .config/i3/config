@@ -47,6 +47,7 @@ bindsym $mod+Return exec --no-startup-id st
 #bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
+bindsym $mod+space exec --no-startup-id "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'firacode-12'"
 # bindsym $mod+space exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
@@ -158,8 +159,8 @@ mode "resize" {
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
         bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym j resize shrink height 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
@@ -203,20 +204,16 @@ bindsym XF86MonBrightnessDown exec --no-startup-id /home/oscargl/.config/scripts
 
 # Custom bindings
 # explorer
-bindsym $mod+e exec --no-startup-id st -e lf
+bindsym $mod+e exec --no-startup-id st -e ranger
 # kill window
 bindsym $mod+q kill
 # browser
 bindsym $mod+b exec brave
-# vim
-# bindsym $mod+n exec --no-startup-id st -e nvim
 # flameshot
 bindsym Print exec --no-startup-id flameshot full -c -p ~/Pictures/Screenshots
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui -p ~/Pictures/Screenshots
 # Switch back and forth in workspaces
 bindsym Mod1+Tab workspace back_and_forth
-# Select wallpaper
-# bindsym $mod+w exec --no-startup-id sxiv -r -q -t -o ~/Pictures/Wallpapers/*
 # Random wallpaper
 bindsym $mod+w exec --no-startup-id ~/.config/scripts/randomWallpaper.sh
 
@@ -232,12 +229,9 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # Start dunst notifications
 exec_always --no-startup-id dunst
 
-exec --no-startup-id /home/oscargl/.local/bin/SPTN.sh
-
 # Floating windows
 for_window [title="^Emulator"] floating enable move to workspace number $ws3
 for_window [title="^galculator"] floating enable
-for_window [title="^Ulauncher"] border pixel 0
 
 # Workspaces
 for_window [class="^Brave-browser"] move to workspace number $ws1
@@ -247,16 +241,11 @@ for_window [class="^Spotify"] move to workspace number $ws8
 # Hide borders when single window (use smart borders when using i3_gaps)
 hide_edge_borders smart
 
-# Custom colors
-# client.focused          #4c7899 #285577 #ffffff #2e9ef4   #5fafd7
-
+# Dracula colors
 # class                 border  bground text    indicator child_border
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
 client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
 client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
 client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
 client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
-
 client.background       #F8F8F2
-
-bindsym $mod+space exec --no-startup-id "dmenu_run -nf '#F8F8F2' -nb '#282A36' -sb '#6272A4' -sf '#F8F8F2' -fn 'firacode-12'"

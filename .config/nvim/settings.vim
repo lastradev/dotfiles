@@ -21,6 +21,7 @@ set updatetime=750
 set shortmess+=c " removes pattern not found
 set noshowmode
 set cursorline
+set autoindent
 syntax enable " enable syntax highglighting
 syntax on " turn on syntax highlighting
 
@@ -48,7 +49,7 @@ let g:fzf_action = {
 
 " Testing
 let test#strategy = "neovim"
-let test#neovim#term_position = "below 12"
+let test#neovim#term_position = "below 13"
 
 " AUTO DART FORMAT
 let g:dart_format_on_save = 1

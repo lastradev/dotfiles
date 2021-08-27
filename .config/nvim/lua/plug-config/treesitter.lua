@@ -7,7 +7,9 @@ ts_config.setup {
     ensure_installed = {
         "bash",
         "lua",
-        "dart"
+        "dart",
+        "json",
+        "yaml"
     },
     highlight = {
         enable = true,

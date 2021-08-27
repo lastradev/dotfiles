@@ -15,7 +15,6 @@ Plug 'jiangmiao/auto-pairs'
 " Fuzzy Search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'ojroques/nvim-lspfuzzy'
 " Status Line
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 " Code completion
@@ -38,6 +37,7 @@ Plug 'Neevash/awesome-flutter-snippets'
 Plug 'hrsh7th/nvim-compe'
 " LSP gui
 Plug 'neovim/nvim-lspconfig'
+Plug 'kabouzeid/nvim-lspinstall'
 Plug 'glepnir/lspsaga.nvim'
 " Lua support
 Plug 'nvim-lua/plenary.nvim'
@@ -60,11 +60,16 @@ Plug 'xiyaowong/nvim-cursorword'
 " Pubspec assist
 Plug 'akinsho/dependency-assist.nvim'
 " Smooth scroll
-Plug 'karb94/neoscroll.nvim'
+" Plug 'karb94/neoscroll.nvim'
 " Testing
 Plug 'vim-test/vim-test'
 " nvim tree
 Plug 'kyazdani42/nvim-tree.lua'
+" debugging
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+" terminal
+Plug 'akinsho/nvim-toggleterm.lua'
 call plug#end()
 
 colorscheme dracula
@@ -74,25 +79,28 @@ highlight CursorWord ctermbg=240 guibg=#363636
 runtime ./plug-config/nvimtree.vim
 " DASHBOARD
 runtime ./plug-config/dashboard.vim
-" COMMENTER
-runtime ./plug-config/nerdcommenter.vim
-" INDENT BLANKLINE
-runtime ./plug-config/indent-blankline.vim
 " MAPPINGS
 runtime ./mappings.vim
+" INDENT BLANKLINE
+runtime ./plug-config/indent-blankline.vim
+" COMMENTER
+runtime ./plug-config/nerdcommenter.vim
 
 lua << EOF
-require("flutter-tools").setup{}
-require'lspconfig'.tsserver.setup{}
-require'dependency_assist'.setup{}
-require('neoscroll').setup()
-require('lspfuzzy').setup {}
+require 'lspconfig'.tsserver.setup{}
+require 'plug-config.lspInstall'
+require 'plug-config.dap'
+require ("flutter-tools").setup()
+require 'dependency_assist'.setup()
+--require ('neoscroll').setup()
+require 'plug-config.toggleterm'
 require 'plug-config.gitsigns'
-require("trouble").setup {}
+require ("trouble").setup()
 require 'plug-config.compe'
 require 'plug-config.lspDiagnosticsSigns'
 require 'plug-config.completionItemKinds'
 require 'plug-config.treesitter'
-require("which-key").setup {}
+require ("which-key").setup()
 require 'plug-config.galaxyline'
+require ("dapui").setup()
 EOF
