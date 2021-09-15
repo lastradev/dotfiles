@@ -1,7 +1,6 @@
 " Vim color file
 "
 " Author: Oscar Lastra <oscar.glastra@gmail.com>
-" https://github.com/oscaragl13/bear
 "
 " Note: Based on the Bear theme for VSCode by dahong
 " Edited from molokai by tomasr

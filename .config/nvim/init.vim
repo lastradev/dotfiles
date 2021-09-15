@@ -59,8 +59,6 @@ Plug '/nvim-conf/plugged/custom-flutter-snippets'
 Plug 'xiyaowong/nvim-cursorword'
 " Pubspec assist
 Plug 'akinsho/dependency-assist.nvim'
-" Smooth scroll
-" Plug 'karb94/neoscroll.nvim'
 " Testing
 Plug 'vim-test/vim-test'
 " nvim tree
@@ -87,12 +85,13 @@ runtime ./plug-config/indent-blankline.vim
 runtime ./plug-config/nerdcommenter.vim
 
 lua << EOF
-require 'lspconfig'.tsserver.setup{}
 require 'plug-config.lspInstall'
-require 'plug-config.dap'
-require ("flutter-tools").setup()
+require ("flutter-tools").setup {
+  debugger = { -- integrate with nvim dap + install dart code debugger
+    enabled = true
+  }
+}
 require 'dependency_assist'.setup()
---require ('neoscroll').setup()
 require 'plug-config.toggleterm'
 require 'plug-config.gitsigns'
 require ("trouble").setup()
@@ -102,5 +101,15 @@ require 'plug-config.completionItemKinds'
 require 'plug-config.treesitter'
 require ("which-key").setup()
 require 'plug-config.galaxyline'
+require 'plug-config.dap'
 require ("dapui").setup()
+local saga = require 'lspsaga'
+saga.init_lsp_saga {
+  code_action_prompt = {
+    enable = false,
+    sign = false,
+    sign_priority = 20,
+    virtual_text = true,
+  },
+}
 EOF

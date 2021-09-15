@@ -9,7 +9,8 @@ ts_config.setup {
         "lua",
         "dart",
         "json",
-        "yaml"
+        "yaml",
+        "python"
     },
     highlight = {
         enable = true,
