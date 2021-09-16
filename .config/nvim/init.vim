@@ -1,4 +1,6 @@
-runtime ./settings.vim
+lua << EOF
+require 'core.options'
+EOF
 
 call plug#begin('/nvim-conf/plugged')
 " Theme
@@ -29,20 +31,29 @@ Plug 'ap/vim-css-color'
 Plug 'tpope/vim-surround'
 "Vim Startify
 Plug 'glepnir/dashboard-nvim'
-" Vim snippets
+" Vim snippets and completion
+Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
-Plug 'Neevash/awesome-flutter-snippets'
-" Completion
-Plug 'hrsh7th/nvim-compe'
+Plug 'Nash0x7E2/awesome-flutter-snippets'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/cmp-calc'
+Plug 'hrsh7th/cmp-emoji'
+Plug 'SirVer/ultisnips'
+Plug 'mlaursen/vim-react-snippets'
+Plug 'honza/vim-snippets'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+" Kind in snippets
+Plug 'onsails/lspkind-nvim'
 " LSP gui
 Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'glepnir/lspsaga.nvim'
 " Lua support
 Plug 'nvim-lua/plenary.nvim'
-" Vim game
-Plug 'ThePrimeagen/vim-be-good'
 " Trouble
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
@@ -68,48 +79,19 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 " terminal
 Plug 'akinsho/nvim-toggleterm.lua'
+" Python formater
+Plug 'psf/black'
 call plug#end()
-
-colorscheme dracula
-highlight CursorWord ctermbg=240 guibg=#363636
 
 " FILE TREE
 runtime ./plug-config/nvimtree.vim
-" DASHBOARD
-runtime ./plug-config/dashboard.vim
-" MAPPINGS
-runtime ./mappings.vim
 " INDENT BLANKLINE
 runtime ./plug-config/indent-blankline.vim
 " COMMENTER
 runtime ./plug-config/nerdcommenter.vim
 
 lua << EOF
-require 'plug-config.lspInstall'
-require ("flutter-tools").setup {
-  debugger = { -- integrate with nvim dap + install dart code debugger
-    enabled = true
-  }
-}
-require 'dependency_assist'.setup()
-require 'plug-config.toggleterm'
-require 'plug-config.gitsigns'
-require ("trouble").setup()
-require 'plug-config.compe'
-require 'plug-config.lspDiagnosticsSigns'
-require 'plug-config.completionItemKinds'
-require 'plug-config.treesitter'
-require ("which-key").setup()
-require 'plug-config.galaxyline'
-require 'plug-config.dap'
-require ("dapui").setup()
-local saga = require 'lspsaga'
-saga.init_lsp_saga {
-  code_action_prompt = {
-    enable = false,
-    sign = false,
-    sign_priority = 20,
-    virtual_text = true,
-  },
-}
+require 'modules'
+require 'core.keymaps'
+require 'core.colors'
 EOF
