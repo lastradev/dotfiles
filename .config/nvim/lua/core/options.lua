@@ -14,7 +14,7 @@ o.ruler = false
 o.backup = false
 o.swapfile = false
 
--- Completion pending
+-- Completion
 o.completeopt = 'menuone,noselect'
 o.pumheight = 8
 

@@ -97,13 +97,13 @@ map('n', '[e', '<cmd>Lspsaga diagnostic_jump_next<CR>')
 map('n', ']e', '<cmd>Lspsaga diagnostic_jump_prev<CR>')
 
 -- Quick fix trouble
-map('n', 'xx', '<cmd>TroubleToggle<CR>')
-map('n', 'xw', '<cmd>TroubleToggle lsp_workspace_diagnostics<CR>')
-map('n', 'xd', '<cmd>TroubleToggle lsp_document_diagnostics<CR>')
-map('n', 'xq', '<cmd>TroubleToggle quickfix<CR>')
-map('n', 'xl', '<cmd>TroubleToggle loclist<CR>')
-map('n', 'xl', '<cmd>TroubleToggle loclist<CR>')
-map('n', 'gR', '<cmd>TroubleToggle lsp_references<CR>')
+map('n', '<leader>xx', '<cmd>TroubleToggle<CR>')
+map('n', '<leader>xw', '<cmd>TroubleToggle lsp_workspace_diagnostics<CR>')
+map('n', '<leader>xd', '<cmd>TroubleToggle lsp_document_diagnostics<CR>')
+map('n', '<leader>xq', '<cmd>TroubleToggle quickfix<CR>')
+map('n', '<leader>xl', '<cmd>TroubleToggle loclist<CR>')
+map('n', '<leader>xl', '<cmd>TroubleToggle loclist<CR>')
+map('n', '<leader>gR', '<cmd>TroubleToggle lsp_references<CR>')
 
 -- Breakpoints for undo
 map('i', ',', ',<c-g>u')

@@ -83,13 +83,6 @@ Plug 'akinsho/nvim-toggleterm.lua'
 Plug 'psf/black'
 call plug#end()
 
-" FILE TREE
-runtime ./plug-config/nvimtree.vim
-" INDENT BLANKLINE
-runtime ./plug-config/indent-blankline.vim
-" COMMENTER
-runtime ./plug-config/nerdcommenter.vim
-
 lua << EOF
 require 'modules'
 require 'core.keymaps'

@@ -19,8 +19,8 @@ cmp.setup({
   },
   mapping = {
     ['<CR>'] = cmp.mapping.confirm {
+      select = false,
       behavior = cmp.ConfirmBehavior.Insert,
-      select = true,
     },
     ['<Tab>'] = function(fallback)
       if not cmp.select_next_item() then
