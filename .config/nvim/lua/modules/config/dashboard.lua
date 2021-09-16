@@ -16,7 +16,7 @@ vim.g.dashboard_custom_section = {
   },
   open_config = {
     description = { '  Open Config                         SPC x x' },
-    command = 'new | wincmd j | q | cd ~/.config/nvim/ | e ./init.vim',
+    command = 'new | wincmd j | q | cd ~/.config/nvim/ | e ./init.lua',
   },
   change_colorscheme = {
     description = { '  Change colorscheme                  SPC x x' },

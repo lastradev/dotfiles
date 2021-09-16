@@ -5,12 +5,13 @@ end
 
 ts_config.setup {
     ensure_installed = {
-        "bash",
-        "lua",
-        "dart",
-        "json",
-        "yaml",
-        "python"
+       "bash",
+       "lua",
+       "dart",
+       "json",
+       "yaml",
+       "python",
+       "cpp"
     },
     highlight = {
         enable = true,
