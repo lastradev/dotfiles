@@ -85,7 +85,9 @@ return require('packer').startup(function(use)
 
   use {
     'glepnir/lspsaga.nvim',
-    config = require 'modules.config.lspDiagnosticsSigns'
+    config = function()
+      require 'modules.config.lspDiagnosticsSigns'
+    end
   }
 
   -- Quickfix trouble
@@ -208,9 +210,9 @@ return require('packer').startup(function(use)
   use {'dracula/vim', as = 'dracula'}
 
   -- Personal snippets
-  use {
-    '~/.local/share/nvim/site/pack/packer/custom-snippets',
-    requires = {'hrsh7th/nvim-cmp'}
-  }
+  --use {
+    --'~/.local/share/nvim/site/pack/packer/custom-snippets',
+    --requires = {'hrsh7th/nvim-cmp'}
+  --}
 end)
 
