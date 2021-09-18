@@ -17,6 +17,8 @@ export PATH="$PATH:/home/oscargl/development/flutter/bin"
 export PATH="$PATH:/home/oscargl/.local/bin"
 export CHROME_EXECUTABLE="/usr/bin/google-chrome-stable" 
 
-colorscript random
+#colorscript random
 
-eval "$(starship init bash)"
+#eval "$(starship init bash)"
+
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
