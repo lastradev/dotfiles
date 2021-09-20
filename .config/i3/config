@@ -228,6 +228,8 @@ bindsym $mod+minus scratchpad show
 # STARTUP PROGRAMS
 # Keyboard layout
 exec_always --no-startup-id setxkbmap es
+# Speedy keys
+exec_always --no-startup-id xset r rate 210 40
 # Display wallpaper
 exec --no-startup-id xargs xwallpaper --zoom < ~/.xwallpaper
 # Start composer
