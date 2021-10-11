@@ -230,6 +230,8 @@ bindsym $mod+minus scratchpad show
 exec_always --no-startup-id setxkbmap es
 # Speedy keys
 exec_always --no-startup-id xset r rate 210 40
+# Change screen blank time to 5 minutes
+exec_always --no-startup-id xset s 300
 # Display wallpaper
 exec --no-startup-id xargs xwallpaper --zoom < ~/.xwallpaper
 # Start composer

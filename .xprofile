@@ -1,0 +1,4 @@
+# Program startups and other configs found in i3 config
+
+# zsh config dir
+export ZDOTDIR=$HOME/.config/zsh
