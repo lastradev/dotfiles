@@ -56,6 +56,7 @@ font-2 = siji:pixelsize=10;1
 font-3 = Font Awesome 5 Free:pixelsize=11;2
 font-4 = Font Awesome 5 Free Solid:pixelsize=11;2
 font-5 = Font Awesome 5 Brands:pixelsize=11;2
+font-6 = Noto Color Emoji:scale=10;2
 
 modules-left = i3
 modules-right = pulseaudio filesystem memory cpu battery xkeyboard temperature date
@@ -71,7 +72,7 @@ type = internal/xkeyboard
 blacklist-0 = num lock
 
 
-format-prefix = "  " 
+format-prefix = "🌎 " 
 format-prefix-foreground = ${colors.foreground}
 format-prefix-underline = ${colors.primary}
 
@@ -89,7 +90,7 @@ interval = 25
 
 mount-0 = /
 
-label-mounted =   %free%
+label-mounted =🫙 %free%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 format-mounted-underline = ${colors.primary}
@@ -152,7 +153,7 @@ ws-icon-9 = 10;
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = "🚀"
 format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.primary}
 label = %percentage:2%%
@@ -160,7 +161,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = "🐘 "
 format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.primary}
 label = %percentage_used%%
@@ -197,7 +198,7 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
+format-prefix = 🕐
 format-prefix-foreground = ${colors.foreground}
 format-underline = ${colors.primary}
 
@@ -207,7 +208,7 @@ label = %date% %time%
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
-label-volume = %percentage%%
+label-volume =🔊 %percentage%%
 label-volume-foreground = ${root.foreground}
 
 label-muted =  muted
@@ -236,15 +237,15 @@ battery = BAT0
 adapter = ADP1
 full-at = 98
 
-;format-charging = <animation-charging> <label-charging>
-format-charging =   <label-charging>
+format-charging = <animation-charging> <label-charging>
+;format-charging = 🔋 <label-charging>
 format-charging-underline = ${colors.primary}
 
 ;format-discharging = <animation-discharging> <label-discharging>
-format-discharging =   <label-discharging>
+format-discharging = 🔋 <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = " "
+format-full-prefix = "🔋"
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
@@ -253,9 +254,9 @@ ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-foreground = ${colors.foreground-alt}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
+animation-charging-0 = 🪫
+animation-charging-1 = 🔋
+animation-charging-2 = 🔋
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
@@ -277,8 +278,8 @@ format-underline = ${colors.primary}
 format-warn = <label-warn>
 format-warn-underline = ${self.format-underline}
 
-label = %temperature-c%
-label-warn = %temperature-c%
+label = 🧊 %temperature-c%
+label-warn = 🔥 %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
 ramp-0 = 

@@ -18,8 +18,8 @@ function brightness_notification {
     brightness=`get_brightness`
     printf -v br_int %.0f "$brightness"
     echo $br_int
-    bar=$(seq -s "─" $(($br_int / 5)) | sed 's/[0-9]//g')
-    dunstify -r $notify_id -u low -i ${icon_path}sun.png $bar
+    bar=$(seq -s "─" $(($br_int / 6)) | sed 's/[0-9]//g')
+    dunstify -r $notify_id -t 1000 -u low -i 0 "🔆 $bar"
 }
 
 case $1 in

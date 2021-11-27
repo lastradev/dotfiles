@@ -1,4 +1,19 @@
-# Program startups and other configs found in i3 config
+# STARTUP SETTINGS
+# Keyboard layout
+setxkbmap es
+# Speedy keys
+xset r rate 210 40
+# Change screen blank time to 5 minutes
+xset s 300
+
+
+# STARTUP PROGRAMS (Polybar is in i3 config)
+# Display wallpaper
+nitrogen --restore &
+# Start composer
+picom -b
+# Network tray icon
+nm-applet &
 
 # zsh config dir
 export ZDOTDIR=$HOME/.config/zsh

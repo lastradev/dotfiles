@@ -50,15 +50,6 @@ do
             notify-send "File information" \
             "$(mediainfo "$file" | tr -s ' ' | grep -v CompleteName_Last)"
         ;;
-        "w") 
-            xwallpaper --zoom "$file" &&
-            filename=$HOME/.xwallpaper
-            if [ ! -f $filename ]; then
-                touch $filename
-            fi
-            echo "$file" > $HOME/.xwallpaper &&
-            notify-send "$file has been set as your wallpaper." && exit 0
-        ;;
         "7")
             rotate 270
         ;;
