@@ -1,0 +1,11 @@
+#!/bin/sh
+
+sh_menu () {
+	# -l 2 because there are 2 monitor options.
+	ls ~/.config/monitor/modes | dmenu -p "Monitor Mode:" -l 2
+}
+
+mode=$(sh_menu)
+
+# Execute monitor mode.
+~/.config/monitor/modes/$mode
