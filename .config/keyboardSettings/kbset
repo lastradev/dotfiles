@@ -4,3 +4,7 @@
 setxkbmap es
 # Speedy keys
 xset r rate 210 40
+# remap caps to escape
+setxkbmap -option caps:swapescape
+
+notify-send "😉 Keyboard set correctly"

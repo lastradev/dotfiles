@@ -206,9 +206,11 @@ bindsym $mod+e exec --no-startup-id st -e ranger
 bindsym $mod+q kill
 # browser
 bindsym $mod+b exec brave
+# wallpaper
+bindsym $mod+w exec --no-startup-id nsxiv ~/Pictures/Wallpapers -t
 # flameshot
 bindsym Print exec --no-startup-id flameshot full -c -p ~/Pictures/Screenshots
-bindsym $mod+Shift+s exec --no-startup-id flameshot gui -p ~/Pictures/Screenshots
+bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 # scratchpad move/show
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
