@@ -8,24 +8,36 @@ Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hintstyle:  hintfull
 
-! Dracula Xresources palette
-*.foreground: #F8F8F2
-*.background: #282A36
-*.color0:     #000000
-*.color8:     #4D4D4D
-*.color1:     #FF5555
-*.color9:     #FF6E67
-*.color2:     #50FA7B
-*.color10:    #5AF78E
-*.color3:     #F1FA8C
-*.color11:    #F4F99D
-*.color4:     #BD93F9
-*.color12:    #CAA9FA
-*.color5:     #FF79C6
-*.color13:    #FF92D0
-*.color6:     #8BE9FD
-*.color14:    #9AEDFE
-*.color7:     #BFBFBF
-*.color15:    #E6E6E6
-
 Xcursor.theme: capitaine-cursors
+
+! Custom
+! Original theme https://github.com/nathanbuchar/atom-one-dark-terminal
+*.foreground:    #ABB2BF
+*.background:    #282c34
+*.cursorColor:   #5C6370
+*.highlightColor:#3A3F4B
+
+! Negro y gris
+*.color0:        #0c0e15
+*.color8:        #455574
+! Rojos
+*.color1:        #f65866
+*.color9:        #f65866
+! Verde
+*.color2:        #8bcd5b
+*.color10:       #8bcd5b
+! Amarillo
+*.color3:        #efbd5d
+*.color11:       #efbd5d
+! Azul
+*.color4:        #41a7fc
+*.color12:       #41a7fc
+! Magenta
+*.color5:        #c75ae8
+*.color13:       #c75ae8
+! Cyan
+*.color6:        #34bfd0
+*.color14:       #34bfd0
+! Blanco
+*.color7:        #6c7d9c
+*.color15:       #FFFFFF

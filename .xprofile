@@ -5,8 +5,35 @@ setxkbmap es
 xset r rate 210 40
 # remap caps to escape
 setxkbmap -option caps:swapescape
+
 # Change screen blank time to 5 minutes
-xset s 300
+xset s off dpms 300 300 0
+
+# Disable DPMS turning off the screen
+# xset -dpms
+# xset s off
+
+# Disable bell
+xset -b
+
+# Enable zapping (C-A-<Bksp> kills X)
+setxkbmap -option terminate:ctrl_alt_bksp
+
+# Enforce correct locales from the beginning:
+# LC_ALL is unset since it overwrites everything
+
+# LC_MESSAGES=C never translates program output
+# LC_TIME=en_DK leads to yyyy-mm-dd hh:mm date/time output
+unset LC_ALL
+export LANG=en_US.UTF-8
+export LC_MESSAGES=C
+export LC_TIME=es_MX.UTF-8
+
+# Use XToolkit in java applications
+export AWT_TOOLKIT=XToolkit
+
+# Enable core dumps in case something goes wrong
+ulimit -c unlimited
 
 # STARTUP PROGRAMS (Polybar and nm-manager in i3 config)
 # Display wallpaper
@@ -16,4 +43,3 @@ picom -b
 
 # zsh config dir
 export ZDOTDIR=$HOME/.config/zsh
-
