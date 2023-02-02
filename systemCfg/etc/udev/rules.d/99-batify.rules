@@ -12,12 +12,6 @@ ATTR{capacity}=="1[6-9]", \
 IMPORT{program}="/usr/bin/xpub", \
 RUN+="/bin/su $env{XUSER} -c 'notify-send -u normal Discharging: $attr{capacity}%'"
 
-#SUBSYSTEM=="power_supply", ACTION=="change", \
-#ENV{POWER_SUPPLY_ONLINE}=="0", ENV{POWER}="off", \
-#OPTIONS+="last_rule", \
-#IMPORT{program}="/usr/bin/xpub", \
-#RUN+="/bin/su $env{XUSER} -c 'notify-send -u low UnPlugged'"
-
 SUBSYSTEM=="power_supply", ACTION=="change", \
 ENV{POWER_SUPPLY_ONLINE}=="1", ENV{POWER}="on", \
 OPTIONS+="last_rule", \
